@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ customer.name }}</h2>
+    <p>Email: {{ customer.email }}</p>
+    <p>Current Balance: {{ customer.current_balance }}</p>
+    <h3>Sent</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Sender</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transfer in transfers_sent %}
+                <tr>
+                    <td>{{ transfer.sender.name }}</td>
+                    <td>{{ transfer.amount }}</td>
+                    <td>{{ transfer.date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <h3>Received</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Received</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transfer in transfers_received  %}
+                <tr>
+                    <td>{{ transfer.sender.name }}</td>
+                    <td>{{ transfer.amount }}</td>
+                    <td>{{ transfer.date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <p><a href="{% url 'transfer' %}?sender={{ customer.pk }}" class="btn btn-primary">Transfer Money</a></p>
+{% endblock %}

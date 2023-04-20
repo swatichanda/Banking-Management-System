@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>All Transfers</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Sender</th>
+                <th>Receiver</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transfer in transfers %}
+                <tr>
+                    <td>{{ transfer.sender.name }}</td>
+                    <td>{{ transfer.receiver.name }}</td>
+                    <td>{{ transfer.amount }}</td>
+                    <td>{{ transfer.date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
